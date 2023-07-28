@@ -1,0 +1,115 @@
+@font-face {
+  font-family: "orbit";
+  src: url("/public/font/Orbit-Regular.ttf") format("truetype");
+}
+div {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "orbit";
+}
+
+div.columns:not(:last-child) {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.column {
+  height: 100vh;
+}
+.column.menu {
+  background-color: #9932cc;
+  padding-left: 36px;
+}
+.column.menu .homepage {
+  margin-top: 10px;
+}
+.column.menu .homepage:hover {
+  cursor: pointer;
+}
+.column.menu .card {
+  width: 70%;
+  margin: 30px 15% 50px 15%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.column.menu .card img {
+  border-radius: 50%;
+}
+.column.menu .card #userinfo {
+  margin-top: 10px;
+}
+.column.menu .each-menu {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 40px;
+}
+.column.menu .each-menu i {
+  margin-left: 5%;
+  flex-basis: 25%;
+}
+.column.menu .each-menu .button {
+  margin-left: 20%;
+  border-radius: 10px;
+  height: 30px;
+  margin-top: 2px;
+}
+.column.chatbody {
+  padding: 30px;
+}
+.column.chatbody .chatroom {
+  height: calc(100vh - 60px - 148px);
+  overflow-y: scroll;
+  background-color: #fffff0;
+  border-bottom: 3px solid #9932CC;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.column.chatbody .chatroom .chat .chat-name {
+  font-weight: bold;
+  margin: 2px;
+}
+.column.chatbody .chatroom .chat .tag {
+  font-size: 18px;
+}
+.column.chatbody .chatroom .mychat {
+  align-self: flex-end;
+}
+.column.chatbody .chatroom .mychat .chat-name {
+  text-align: right;
+}
+.column.chatbody .chatroom .chatdate {
+  text-align: center;
+}
+.column.chatbody .chatinput {
+  margin-top: 20px;
+  position: relative;
+}
+.column.chatbody .chatinput .textarea {
+  resize: none;
+  padding-right: 50px;
+}
+.column.chatbody .chatinput #emoticon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.column.chatbody .chatinput #emoticon:hover {
+  cursor: pointer;
+}
+.column.chatbody .chatinput #send {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.column.chatbody .chatinput #send:hover {
+  cursor: pointer;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 1%;
+  left: 0.5%;
+}/*# sourceMappingURL=chat.css.map */

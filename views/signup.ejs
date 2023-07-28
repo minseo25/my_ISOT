@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/public/css/bulma.min.css">
+    <link rel="stylesheet" href="/public/css/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-field">
+        <p class="login-notice">회원가입 페이지</p>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input class="input" type="id" id="id" placeholder="ID">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                </span>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input class="input" type="password" id="pw" placeholder="PW">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+                <span class="icon is-small is-right">
+                    <i class="fas fa-check"></i>
+                </span>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input class="input" type="password" id="pw-check" placeholder="PW 재확인">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+                <span class="icon is-small is-right">
+                    <i class="fas fa-check"></i>
+                </span>
+            </p>
+            <p class="help is-danger" id="pw-same">PW가 동일하지 않습니다</p>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input class="input" type="text" id="username" placeholder="사용자 이름">
+                <span class="icon is-small is-left">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input class="input" type="text" id="userinfo" placeholder="새로운 소개">
+                <span class="icon is-small is-left">
+                    <i class="fa-solid fa-circle-info"></i>
+                </span>
+            </p>
+        </div>
+        <div class="file is-info has-name">
+            <label class="file-label">
+                <input class="file-input" type="file" id="profile">
+                <span class="file-cta">
+                    <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                        Profile
+                    </span>
+                </span>
+                <span class="file-name">
+                    ???.png/jpg
+                </span>
+            </label>
+        </div>
+        <div class="field">
+            <p class="control">
+                <button class="button is-success" id="signup">
+                    Sign Up
+                </button>
+            </p>
+        </div>
+    </div>
+    <div class="copyright">@Minseo Kim_23_SS_Project</div>
+
+    <script src="/public/js/jquery-3.7.0.js"></script>
+    <script src="/public/js/signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+@use 'menubar';
+@font-face {
+    font-family: 'orbit';
+    src: url('/public/font/Orbit-Regular.ttf') format('truetype');
+}
+
+$theme-color: #9932CC;
+
+div {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'orbit';
+}
+
+.black-bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 5;
+    visibility: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .white-bg {
+        background-color: white;
+        width: 1000px;
+        padding: 50px;
+        max-height: 700px;
+        overflow-y: scroll;
+        border: 1px solid black;
+
+        #each-note-message {
+            resize: none;
+        }
+        .comment-input {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .comment-container {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    }
+}
+.show-modal {
+    visibility: visible;
+}
+
+div.columns:not(:last-child) {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.column {
+    height: 100vh;
+    &.menu {
+        @include menubar.menu;
+    }
+    &.note {
+        position: relative;
+        padding: 30px;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 5%;
+            right: 0px;
+            width: 3px;
+            height: 90%;
+            background-color: $theme-color;
+        }
+        .note-buttons {
+            margin: 20px 0 20px 0;
+            position: relative;
+            
+            #add-note {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            #not-read:hover {
+                cursor: pointer;
+            }
+            #mentioned:hover {
+                cursor: pointer;
+            }
+        }
+        .notes {
+            height: calc(100vh - 175px);
+            overflow-y: scroll;
+
+            .note-read {
+                color: gray;
+            }
+            .each-note {
+                border-top: 1px solid $theme-color;
+                border-left: 1px solid $theme-color;
+                border-right: 1px solid $theme-color;
+                padding: 10px;
+                &:last-child {
+                    border-bottom: 1px solid $theme-color;
+                }
+                .note-title {
+                    font-weight: bold;
+                    font-size: 30px;
+                    margin-bottom: 10px;
+                }
+            }
+            .each-note:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    &.memo {
+        padding: 30px;
+        position: relative;
+        #add-memo {
+            position: absolute;
+            right: 30px;
+            top: 90px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .memos {
+            margin-top: 60px;
+            height: calc(100vh - 160px);
+            overflow-y: scroll;
+            .each-memo {
+                position: relative;
+                width: 96%;
+                margin-top: 15px;
+                .textarea {
+                    background-color: #FFF5EE;
+                }
+                .delete {
+                    position: absolute;
+                    top: -10px;
+                    right: -10px;
+                }
+            } 
+        }
+    }
+}
+
+.copyright {
+    position: absolute;
+    bottom: 1%;
+    left: 0.5%;
+}

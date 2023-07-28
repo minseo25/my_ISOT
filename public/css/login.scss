@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'orbit';
+    src: url('/public/font/Orbit-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'orbit';
+}
+.login-field {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -300px;
+    .login-notice {
+        font-size: 30px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+}
+.copyright {
+    position: absolute;
+    bottom: 1%;
+    left: 0.5%;
+    font-weight: bold;
+}
+.file.is-info {
+    margin-bottom: 15px;
+}

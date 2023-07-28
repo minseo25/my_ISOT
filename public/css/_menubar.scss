@@ -1,0 +1,39 @@
+@mixin menu {
+    background-color: #9932cc;
+    padding-left: 36px;
+    
+    .homepage {
+        margin-top: 10px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .card {
+        width: 70%;
+        margin: 30px 15% 50px 15%;
+        border-radius: 20px;
+        overflow: hidden;
+        img {
+            border-radius: 50%;
+        }
+        #userinfo {
+            margin-top: 10px;
+        }
+    }
+
+    .each-menu {
+        display: flex;
+        flex-wrap: nowrap;
+        margin-bottom: 40px;
+        i {
+            margin-left: 5%;
+            flex-basis: 25%;
+        }
+        .button {
+            margin-left: 20%;
+            border-radius: 10px;
+            height: 30px;
+            margin-top: 2px;
+        }  
+    }
+}

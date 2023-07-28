@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/css/bulma.min.css">
+    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-field">
+        <p class="login-notice">로그인 페이지</p>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input class="input" type="text" id="id" placeholder="ID">
+                <span class="icon is-small is-left">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input class="input" type="password" id="pw" placeholder="PW">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span> 
+            </p>
+        </div>
+        <div class="field">
+            <p class="control">
+                <button class="button is-success" id="login">
+                    Login
+                </button>
+                <button type="button" class="button is-success" id="signup" onclick="location.href='/signup';">
+                    Sign Up
+                </button>
+            </p>
+        </div>
+    </div>
+    <div class="copyright">@Minseo Kim_23_SS_Project</div>
+    <script src="/public/js/jquery-3.7.0.js"></script>
+    <script src="/public/js/login.js"></script>
+</body>
+</html>

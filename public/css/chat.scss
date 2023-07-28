@@ -1,0 +1,84 @@
+@use 'menubar';
+@font-face {
+    font-family: 'orbit';
+    src: url('/public/font/Orbit-Regular.ttf') format('truetype');
+}
+$theme-color: #9932CC;
+
+div {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'orbit';
+}
+
+div.columns:not(:last-child) {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.column {
+    height: 100vh;
+    &.menu {
+        @include menubar.menu;
+    }
+    &.chatbody {
+        padding: 30px;
+        .chatroom {
+            height: calc(100vh - 60px - 148px);
+            overflow-y: scroll;
+            background-color: #fffff0;
+            border-bottom: 3px solid $theme-color;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            .chat {
+                .chat-name {
+                    font-weight: bold;
+                    margin: 2px;
+                }
+                .tag {
+                    font-size: 18px;
+                }
+            }
+            .mychat {
+                align-self: flex-end;
+                .chat-name {
+                    text-align: right;
+                }
+            }
+            .chatdate {
+                text-align: center;
+            }
+        }
+        .chatinput {
+            margin-top: 20px;
+            position: relative;
+            .textarea {
+                resize: none;
+                padding-right: 50px;
+            }
+            #emoticon {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            #send {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.copyright {
+    position: absolute;
+    bottom: 1%;
+    left: 0.5%;
+}

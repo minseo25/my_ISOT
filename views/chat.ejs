@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatroom</title>
+    <link rel="stylesheet" href="/public/css/bulma.min.css">
+    <link rel="stylesheet" href="/public/css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="columns">
+        <%- include('menubar.ejs') %>
+        <div class="column is-10 chatbody">
+            <div class="chatroom">             
+                <% var lastMessageDate = null;
+                for(var chat of chats) {
+                    var date = new Date(chat.time)
+                    var messageDate = date.toLocaleDateString();
+                    if(messageDate !== lastMessageDate) { %>
+                        <div class="chatdate">
+                            --------------------------------- <%= messageDate %> ---------------------------------
+                        </div>
+                        <% lastMessageDate = messageDate
+                    }
+                    if(chat.author === user.username) { %>
+                        <div class="chat mychat" data-time="<%= chat.time %>">
+                            <p class="chat-name"><%= chat.author %></p>
+                            <div class="chat-content">
+                                <span class="time"><%= String(date.getHours()).padStart(2,'0') %>:<%= String(date.getMinutes()).padStart(2,'0') %></span>
+                                <span class="tag is-link"><%= chat.message %></span>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <div class="chat"  data-time="<%= chat.time %>">
+                            <p class="chat-name"><%= chat.author %></p>
+                            <div class="chat-content">
+                                <span class="tag is-link is-light"><%= chat.message %></span>
+                                <span class="time"><%= String(date.getHours()).padStart(2,'0') %>:<%= String(date.getMinutes()).padStart(2,'0') %></span>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+            <div class="chatinput">
+                <div class="field">
+                    <div class="control">
+                        <textarea class="textarea is-link" id="message" data-author="<%= user.username %>" placeholder="Enter message here"></textarea>
+                        <i class="fa-solid fa-paper-plane" id="send"></i>
+                        <i class="fa-solid fa-face-smile" id="emoticon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright has-text-white">@Minseo Kim_23_SS_Project</div>
+    
+    <script src="/public/js/jquery-3.7.0.js"></script>
+    <script src="/public/js/socket.io.js"></script>
+    <script src="/public/js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+@font-face {
+  font-family: "orbit";
+  src: url("/public/font/Orbit-Regular.ttf") format("truetype");
+}
+div {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "orbit";
+}
+
+.black-bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.black-bg .white-bg {
+  background-color: white;
+  width: 1000px;
+  padding: 50px;
+  max-height: 700px;
+  overflow-y: scroll;
+  border: 1px solid black;
+}
+.black-bg .white-bg #each-note-message {
+  resize: none;
+}
+.black-bg .white-bg .comment-input {
+  display: flex;
+  margin-bottom: 10px;
+}
+.black-bg .white-bg .comment-container {
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.show-modal {
+  visibility: visible;
+}
+
+div.columns:not(:last-child) {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.column {
+  height: 100vh;
+}
+.column.menu {
+  background-color: #9932cc;
+  padding-left: 36px;
+}
+.column.menu .homepage {
+  margin-top: 10px;
+}
+.column.menu .homepage:hover {
+  cursor: pointer;
+}
+.column.menu .card {
+  width: 70%;
+  margin: 30px 15% 50px 15%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.column.menu .card img {
+  border-radius: 50%;
+}
+.column.menu .card #userinfo {
+  margin-top: 10px;
+}
+.column.menu .each-menu {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 40px;
+}
+.column.menu .each-menu i {
+  margin-left: 5%;
+  flex-basis: 25%;
+}
+.column.menu .each-menu .button {
+  margin-left: 20%;
+  border-radius: 10px;
+  height: 30px;
+  margin-top: 2px;
+}
+.column.note {
+  position: relative;
+  padding: 30px;
+}
+.column.note::after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  right: 0px;
+  width: 3px;
+  height: 90%;
+  background-color: #9932CC;
+}
+.column.note .note-buttons {
+  margin: 20px 0 20px 0;
+  position: relative;
+}
+.column.note .note-buttons #add-note {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.column.note .note-buttons #add-note:hover {
+  cursor: pointer;
+}
+.column.note .note-buttons #not-read:hover {
+  cursor: pointer;
+}
+.column.note .note-buttons #mentioned:hover {
+  cursor: pointer;
+}
+.column.note .notes {
+  height: calc(100vh - 175px);
+  overflow-y: scroll;
+}
+.column.note .notes .note-read {
+  color: gray;
+}
+.column.note .notes .each-note {
+  border-top: 1px solid #9932CC;
+  border-left: 1px solid #9932CC;
+  border-right: 1px solid #9932CC;
+  padding: 10px;
+}
+.column.note .notes .each-note:last-child {
+  border-bottom: 1px solid #9932CC;
+}
+.column.note .notes .each-note .note-title {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.column.note .notes .each-note:hover {
+  cursor: pointer;
+}
+.column.memo {
+  padding: 30px;
+  position: relative;
+}
+.column.memo #add-memo {
+  position: absolute;
+  right: 30px;
+  top: 90px;
+}
+.column.memo #add-memo:hover {
+  cursor: pointer;
+}
+.column.memo .memos {
+  margin-top: 60px;
+  height: calc(100vh - 160px);
+  overflow-y: scroll;
+}
+.column.memo .memos .each-memo {
+  position: relative;
+  width: 96%;
+  margin-top: 15px;
+}
+.column.memo .memos .each-memo .textarea {
+  background-color: #FFF5EE;
+}
+.column.memo .memos .each-memo .delete {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 1%;
+  left: 0.5%;
+}/*# sourceMappingURL=index.css.map */

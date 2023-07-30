@@ -39,6 +39,16 @@ div.columns:not(:last-child) {
                 .tag {
                     font-size: 18px;
                 }
+                .chat-content .tag {
+                    max-width: 90%;
+                    overflow-wrap: break-word;
+                    white-space: normal;
+                    height: 200%;
+
+                    @media (max-width: 900px) {
+                        max-width: 80%;
+                    }
+                }
             }
             .mychat {
                 align-self: flex-end;

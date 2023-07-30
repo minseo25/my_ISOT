@@ -110,6 +110,17 @@ div.columns:not(:last-child) {
 .column.chatbody .chatroom .chat .tag {
   font-size: 18px;
 }
+.column.chatbody .chatroom .chat .chat-content .tag {
+  max-width: 90%;
+  overflow-wrap: break-word;
+  white-space: normal;
+  height: 200%;
+}
+@media (max-width: 900px) {
+  .column.chatbody .chatroom .chat .chat-content .tag {
+    max-width: 80%;
+  }
+}
 .column.chatbody .chatroom .mychat {
   align-self: flex-end;
 }

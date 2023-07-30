@@ -1,10 +1,17 @@
 <div class="column is-2 menu">
-    <p class="title is-2 has-text-white homepage" onclick="location.href='/'">ISOT Manager</p>
+    <p class="title is-2 has-text-white homepage" onclick="location.href='./'">ISOT Manager</p>
     <p class="title is-5 has-text-white">v1.0</p>
     <div class="card">
         <div class="card-image">
             <figure class="image is-1by1">
-                <img src="/public/pictures/<%=user._id %>.jpg" alt="\n\nProfile Image" onerror="this.onerror=null; this.src='/public/pictures/<%=user._id %>.png'">
+                <img src="/my_ISOT/public/pictures/<%=user._id %>.jpg" 
+                    onerror="this.onerror=null; 
+                        this.src='/my_ISOT/public/pictures/<%=user._id %>.png';
+                        this.onerror=(function() {
+                            this.onerror=null; 
+                            this.src='/my_ISOT/public/pictures/<%=user._id %>.jpeg';
+                        })"
+                >
             </figure>
         </div>
         <div class="card-content">
@@ -14,34 +21,35 @@
             </div>
         </div>
         <footer class="card-footer">
-            <a href="/logout" class="card-footer-item">Logout</a>
-            <a href="/change_info" class="card-footer-item">Change Info</a>
+            <a href="./logout" class="card-footer-item">Logout</a>
+            <a href="./change_info" class="card-footer-item">Change Info</a>
         </footer>
     </div>
 
-    <a href="/">
+    <a href="./">
         <div class="each-menu title is-4 has-text-white">
             <i class="fa-solid fa-laptop-file"></i>
             <p>업무 인수인계 페이지</p>
         </div>
     </a>
-    <a href="/schedule">
+    <a href="./schedule">
         <div class="each-menu title is-4 has-text-white">
             <i class="fa-solid fa-calendar-minus"></i>
             <p>스케쥴표</p>
         </div>
     </a>
-    <a href="/memo">
+    <a href="./memo">
         <div class="each-menu title is-4 has-text-white">
             <i class="fa-solid fa-file-pen"></i>
             <p>메모</p>
         </div>
     </a>
-    <a href="/chat">
+    <a href="./chat">
         <div class="each-menu title is-4 has-text-white">
             <i class="fa-brands fa-facebook-messenger"></i>
             <p class="is-2">채팅방</p>
             <button class="button is-danger" id="notread"><%= user.notread %></button>
         </div>
     </a>
+    <div class="copyright has-text-white">@Minseo Kim_23_SS_Project</div>
 </div>

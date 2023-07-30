@@ -1,6 +1,6 @@
 @font-face {
   font-family: "orbit";
-  src: url("/public/font/Orbit-Regular.ttf") format("truetype");
+  src: url("/my_ISOT/public/font/Orbit-Regular.ttf") format("truetype");
 }
 div {
   box-sizing: border-box;
@@ -43,6 +43,10 @@ body {
   border-radius: 5px;
   padding: 5px;
 }
+.black-bg .white-bg .comment-container img {
+  height: 64px;
+  width: 64px;
+}
 
 .show-modal {
   visibility: visible;
@@ -59,6 +63,7 @@ div.columns:not(:last-child) {
 .column.menu {
   background-color: #9932cc;
   padding-left: 36px;
+  position: relative;
 }
 .column.menu .homepage {
   margin-top: 10px;
@@ -78,6 +83,9 @@ div.columns:not(:last-child) {
 .column.menu .card #userinfo {
   margin-top: 10px;
 }
+.column.menu .card .card-footer-item {
+  width: 50%;
+}
 .column.menu .each-menu {
   display: flex;
   flex-wrap: nowrap;
@@ -92,6 +100,38 @@ div.columns:not(:last-child) {
   border-radius: 10px;
   height: 30px;
   margin-top: 2px;
+}
+.column.menu .copyright {
+  position: absolute;
+  bottom: 1%;
+  left: 6%;
+  visibility: visible;
+}
+@media (max-width: 900px) {
+  .column.menu {
+    height: 100%;
+  }
+  .column.menu .card {
+    margin: 10px 25% 20px 25%;
+    width: 50%;
+  }
+  .column.menu .each-menu {
+    margin-bottom: 20px;
+  }
+  .column.menu .copyright {
+    visibility: hidden;
+  }
+}
+@media (min-width: 901px) and (max-width: 1400px) {
+  .column.menu .card-footer-item {
+    font-size: 12px;
+  }
+  .column.menu .each-menu {
+    font-size: 20px;
+  }
+  .column.menu .each-menu i {
+    padding-top: 5px;
+  }
 }
 .column.note {
   position: relative;
@@ -177,10 +217,4 @@ div.columns:not(:last-child) {
   position: absolute;
   top: -10px;
   right: -10px;
-}
-
-.copyright {
-  position: absolute;
-  bottom: 1%;
-  left: 0.5%;
 }/*# sourceMappingURL=index.css.map */

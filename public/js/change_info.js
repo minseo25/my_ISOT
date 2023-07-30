@@ -47,15 +47,15 @@ $('#save').on('click', async function() {
         alert('check pw again');
         return;
     }
-    if(profile_val.split(".").pop()!=="png" && profile_val.split(".").pop()!=="jpg") {
-        alert('profile should be jpg/png');
+    if(profile_val.split(".").pop()!=="png" && profile_val.split(".").pop()!=="jpg" && profile_val.split(".").pop()!=="jpeg") {
+        alert('profile should be png/jpg/jpeg');
         return;
     }
 
     try {
         const res = await $.ajax({
             type: 'POST',
-            url: '/change_info',
+            url: './change_info',
             data: {pw: pw_org, newpw: pw_val, username: username_val, userinfo: userinfo_val}
         });
 
@@ -67,14 +67,14 @@ $('#save').on('click', async function() {
             // contentType: false 함으로써 서버가 데이터 타입 자동으로 결정하는 것 방지
             // processData: false 함으로써 직렬화 방지
             type: 'POST',
-            url: '/upload?_id='+res._id,
+            url: './upload?_id='+res._id,
             data: formData,
             processData: false,
             contentType: false
         });
 
         alert('Changes has been applied');
-        window.location.href = '/';
+        window.location.href = './';
     } catch(err) {
         alert(err.responseText);
     }

@@ -1,8 +1,10 @@
-var socket = io();
+var socket = io({
+    path: '/my_ISOT/socket.io/'
+});
 
 // 안읽은 메시지 개수 0으로
 $('#notread').text(0);
-$.get('/unread_clear');
+$.get('./unread_clear');
 
 // 초기 화면 맨 아래로
 let chatroom = $('.chatroom');
@@ -26,13 +28,13 @@ socket.on('message', (data) => {
     if(messageDate !== lastMessageDate) {
         $('.chatroom').append(`
         <div class="chatdate">
-            --------------------------------- ${messageDate} ---------------------------------
+            --- ${messageDate} ---
         </div>
         `);
         lastMessageDate = messageDate;
     }
 
-    if($('#message').data('author') === data.author) {
+    if($('#message').data('id') === data.uid) {
         // 내가 보낸 메시지
         $('.chatroom').append(`
             <div class="chat mychat" data-time="${data.time}">
@@ -63,12 +65,13 @@ $('#send').on('click', function() {
     var chatdata = {
         author: $('#message').data('author'),
         time: new Date().getTime(),
-        message: $('#message').val()
+        message: $('#message').val(),
+        uid: $('#message').data('id')
     }
     socket.emit('group-chat', chatdata);
 
     // 나머지 모든 사람의 안읽은 메시지 개수 1 증가
-    $.get('/unread');
+    $.get('./unread');
     // 메시지박스 비우기
     $('#message').val('');
 })

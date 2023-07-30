@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatroom</title>
-    <link rel="stylesheet" href="/public/css/bulma.min.css">
-    <link rel="stylesheet" href="/public/css/chat.css">
+    <link rel="stylesheet" href="/my_ISOT/public/css/bulma.min.css">
+    <link rel="stylesheet" href="/my_ISOT/public/css/chat.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -19,11 +19,11 @@
                     var messageDate = date.toLocaleDateString();
                     if(messageDate !== lastMessageDate) { %>
                         <div class="chatdate">
-                            --------------------------------- <%= messageDate %> ---------------------------------
+                            --- <%= messageDate %> ---
                         </div>
                         <% lastMessageDate = messageDate
                     }
-                    if(chat.author === user.username) { %>
+                    if(chat.uid === user._id) { %>
                         <div class="chat mychat" data-time="<%= chat.time %>">
                             <p class="chat-name"><%= chat.author %></p>
                             <div class="chat-content">
@@ -45,7 +45,7 @@
             <div class="chatinput">
                 <div class="field">
                     <div class="control">
-                        <textarea class="textarea is-link" id="message" data-author="<%= user.username %>" placeholder="Enter message here"></textarea>
+                        <textarea class="textarea is-link" id="message" data-author="<%= user.username %>" data-id="<%= user._id %>" placeholder="Enter message here"></textarea>
                         <i class="fa-solid fa-paper-plane" id="send"></i>
                         <i class="fa-solid fa-face-smile" id="emoticon"></i>
                     </div>
@@ -53,10 +53,9 @@
             </div>
         </div>
     </div>
-    <div class="copyright has-text-white">@Minseo Kim_23_SS_Project</div>
     
-    <script src="/public/js/jquery-3.7.0.js"></script>
-    <script src="/public/js/socket.io.js"></script>
-    <script src="/public/js/chat.js"></script>
+    <script src="/my_ISOT/public/js/jquery-3.7.0.js"></script>
+    <script src="/my_ISOT/public/js/socket.io.js"></script>
+    <script src="/my_ISOT/public/js/chat.js"></script>
 </body>
 </html>

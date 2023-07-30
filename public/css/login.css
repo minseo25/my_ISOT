@@ -1,6 +1,6 @@
 @font-face {
   font-family: "orbit";
-  src: url("/public/font/Orbit-Regular.ttf") format("truetype");
+  src: url("/my_ISOT/public/font/Orbit-Regular.ttf") format("truetype");
 }
 body {
   font-family: "orbit";
@@ -8,15 +8,16 @@ body {
 
 .login-field {
   position: absolute;
-  width: 600px;
-  height: 400px;
+  width: 100%;
+  height: auto;
   z-index: 15;
-  top: 50%;
-  left: 50%;
-  margin: -200px 0 0 -300px;
+  top: 30%;
+  left: 0;
+  margin: 0;
+  padding: 20px;
 }
 .login-field .login-notice {
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -30,4 +31,17 @@ body {
 
 .file.is-info {
   margin-bottom: 15px;
+}
+
+@media (min-width: 601px) {
+  .login-field {
+    width: 600px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -300px;
+  }
+  .login-notice {
+    font-size: 30px;
+  }
 }/*# sourceMappingURL=login.css.map */

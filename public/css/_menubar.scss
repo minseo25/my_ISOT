@@ -1,6 +1,7 @@
 @mixin menu {
     background-color: #9932cc;
     padding-left: 36px;
+    position: relative;
     
     .homepage {
         margin-top: 10px;
@@ -19,6 +20,9 @@
         #userinfo {
             margin-top: 10px;
         }
+        .card-footer-item {
+            width: 50%;
+        }
     }
 
     .each-menu {
@@ -35,5 +39,39 @@
             height: 30px;
             margin-top: 2px;
         }  
+    }
+
+    .copyright {
+        position: absolute;
+        bottom: 1%;
+        left: 6%;
+        visibility: visible;
+    }
+
+    @media (max-width: 900px) {
+        height: 100%;
+        .card {
+            margin: 10px 25% 20px 25%;
+            width: 50%;
+        }
+
+        .each-menu {
+            margin-bottom: 20px;
+        }
+
+        .copyright {
+            visibility: hidden;
+        }
+    }
+    @media (min-width: 901px) and (max-width: 1400px) {
+        .card-footer-item {
+            font-size: 12px;
+        }
+        .each-menu {
+            font-size: 20px;
+            i {
+                padding-top: 5px;
+            }
+        }
     }
 }

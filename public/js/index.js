@@ -1,5 +1,8 @@
 // 안 읽은 메시지 개수 업데이트
-var socket = io();
+var socket = io({
+    path: '/my_ISOT/socket.io/'
+});
+
 socket.on('message', (data) => {
     if(!data) {
         return;
@@ -50,7 +53,7 @@ function addListenerToComment() {
     $('.comment-delete').off('click').on('click', function() {
         const deleted_comment = $(this).closest('article');
         $.get({
-            url: '/delete_comment?num='+$(this).data('num'),
+            url: './delete_comment?num='+$(this).data('num'),
             type: 'GET',
             success: function(data) {
                 deleted_comment.remove();
@@ -66,7 +69,7 @@ function addListenerToNote() {
         make_readonly();
         const clickedNote = $(this);
         $.ajax({
-            url: '/get_note?num='+clickedNote.data('num'),
+            url: './get_note?num='+clickedNote.data('num'),
             type: 'GET',
             success: function(data) {
                 // 게시물 내용 채우기 + 읽음처리
@@ -88,7 +91,14 @@ function addListenerToNote() {
                         <article class="media comment">
                             <figure class="media-left">
                                 <p class="image is-64x64">
-                                    <img src="/public/pictures/${comment.uid}.jpg" onerror="this.onerror=null; this.src='/public/pictures/${comment.uid}.png'">
+                                    <img src="/my_ISOT/public/pictures/${comment.uid}.jpg" 
+                                        onerror="this.onerror=null; 
+                                            this.src='/my_ISOT/public/pictures/${comment.uid}.png';
+                                            this.onerror=(function() {
+                                                this.onerror=null; 
+                                                this.src='/my_ISOT/public/pictures/${comment.uid}.jpeg';
+                                            })"
+                                    >
                                 </p>
                             </figure>
                             <div class="media-content">
@@ -148,7 +158,7 @@ $('#each-note-create').on('click', function() {
         time: new Date().getTime()
     };
     $.ajax({
-        url: "/add_note",
+        url: "./add_note",
         type: "POST",
         data: note,
         success: function(data) {
@@ -175,7 +185,7 @@ $('#each-note-create').on('click', function() {
 // 각 노트 수정 기능 활성화
 $('#each-note-modify').on('click', async function() {
     $.ajax({
-        url: '/can_change_note?num='+$('#each-note-detail').data('num'),
+        url: './can_change_note?num='+$('#each-note-detail').data('num'),
         type: 'GET',
         success: function(data) {
             make_editable();
@@ -191,12 +201,12 @@ $('#each-note-save').on('click', function() {
     // 노트 삭제
     if($('#check-delete').is(':checked')) {
         $.ajax({
-            url: '/delete_note?num='+numNote,
+            url: './delete_note?num='+numNote,
             type: 'GET',
             success: async function(data) {
                 $(`.each-note[data-num='${numNote}']`).first().remove();
                 // 언급 개수 변경
-                const res = await $.get('/mentioned_note');
+                const res = await $.get('./mentioned_note');
                 $('#mentioned-counter').text(res.notes.length);
                 $('#each-note-close').click();
             },
@@ -215,7 +225,7 @@ $('#each-note-save').on('click', function() {
         time: new Date().getTime()
     };
     $.ajax({
-        url: '/change_note?num='+numNote,
+        url: './change_note?num='+numNote,
         type: 'POST',
         data: note,
         success: async function(data) {
@@ -226,7 +236,7 @@ $('#each-note-save').on('click', function() {
             $(`.each-note[data-num='${numNote}']`).removeClass('note-read');
             $('#not-read-counter').text(parseInt($('#not-read-counter').text())+1);
             // 언급 개수 변경
-            const res = await $.get('/mentioned_note');
+            const res = await $.get('./mentioned_note');
             $('#mentioned-counter').text(res.notes.length);
             $('#each-note-close').click();
         },
@@ -238,7 +248,7 @@ $('#each-note-save').on('click', function() {
 // 안 읽은 노트들
 $('#not-read').on('click', function() {
     $.ajax({
-        url: '/notread_note',
+        url: './notread_note',
         type: 'GET',
         success: function(data) {
             $('.notes').html('');
@@ -261,7 +271,7 @@ $('#not-read').on('click', function() {
 // 언급된 노트들
 $('#mentioned').on('click', function() {
     $.ajax({
-        url: '/mentioned_note',
+        url: './mentioned_note',
         type: 'GET',
         success: function(data) {
             $('.notes').html('');
@@ -287,7 +297,7 @@ $('#search-note').on('keypress', function(e) {
     
     e.preventDefault();
     $.ajax({
-        url: '/search_note',
+        url: './search_note',
         type: 'POST',
         data: {keyword: $(this).val()},
         success: function(data) {
@@ -311,7 +321,7 @@ $('#search-note').on('keypress', function(e) {
 // 댓글 추가
 $('#add-comment').on('click', function() {
     $.ajax({
-        url: '/add_comment',
+        url: './add_comment',
         type: 'POST',
         data: {numNote: $('#each-note-detail').data('num'), comment: $('#input-comment').val(), time: new Date().getTime()},
         success: function(data) {
@@ -319,7 +329,14 @@ $('#add-comment').on('click', function() {
                 <article class="media comment">
                     <figure class="media-left">
                         <p class="image is-64x64">
-                            <img src="/public/pictures/${data.uid}.jpg" onerror="this.onerror=null; this.src='/public/pictures/${data.uid}.png'">
+                            <img src="/my_ISOT/public/pictures/${data.uid}.jpg" 
+                                onerror="this.onerror=null; 
+                                    this.src='/my_ISOT/public/pictures/${data.uid}.png';
+                                    this.onerror=(function() {
+                                        this.onerror=null; 
+                                        this.src='/my_ISOT/public/pictures/${data.uid}.jpeg';
+                                    })"
+                            >
                         </p>
                     </figure>
                     <div class="media-content">
@@ -359,7 +376,7 @@ function addListenerToMemo() {
             message: $(this).val()
         };
         $.ajax({
-            url: '/change_memo',
+            url: './change_memo',
             type: 'POST',
             data: data,
             error: function(req, status, error) {
@@ -370,7 +387,7 @@ function addListenerToMemo() {
     $('.each-memo button').on('click', function() {
         const deletedMemo = $(this).parent();
         $.ajax({
-            url: '/delete_memo?num='+$(this).siblings('textarea').data('num'),
+            url: './delete_memo?num='+$(this).siblings('textarea').data('num'),
             type: 'GET',
             success: function(data) {
                 deletedMemo.remove();
@@ -385,7 +402,7 @@ addListenerToMemo();
 
 $('#add-memo').on('click', function() {
     $.ajax({
-        url: '/add_memo',
+        url: './add_memo',
         type: 'GET',
         success: function(data) {
             $('.memos').append(`
@@ -407,7 +424,7 @@ $('#search-memo').on('keypress', function(e) {
     
     e.preventDefault();
     $.ajax({
-        url: '/search_memo',
+        url: './search_memo',
         type: 'POST',
         data: {keyword: $(this).val()},
         success: function(data) {

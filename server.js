@@ -4,6 +4,7 @@ require('dotenv').config();
 // express 라이브러리 사용
 const express = require('express');
 const app = express();
+const router = express.Router();
 
 // POST 요청 데이터 해석
 const bodyParser = require('body-parser');
@@ -27,6 +28,7 @@ const io = new Server(http);
 // 이미지(multipart data) 처리 작업 위해
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs').promises;
 
 // DB 연결 (mongodb 5.0.0 ver 사용해보자 5.5.0 대신)
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -101,13 +103,13 @@ passport.deserializeUser(async (uid, done) => {
 function checkLogin(req, res, next) {
     if(req.user) {
         // 로그인 된 상태에서 접속하면 안 되는 페이지들
-        if(req.path==='/login' || req.path === '/signup') return res.redirect('/');
+        if(req.path === '/login' || req.path === '/signup') return res.redirect('/my_ISOT/');
         else return next();
     } else {
         // 로그인 안 된 상태에서도 접속할 수 있는 페이지들
         if(req.path === '/login' || req.path === '/signup' || req.path === '/upload') return next();
         // 그 외
-        res.redirect('/login');
+        res.redirect('/my_ISOT/login');
     }
 }
 app.use(checkLogin);
@@ -136,7 +138,7 @@ app.get('/logout', function(req, res) {
         if(err) return next(err);
         else {
             console.log('logout complete');
-            res.redirect('/login');
+            res.redirect('/my_ISOT/login');
         }
     })
 });
@@ -192,8 +194,34 @@ var upload = multer({
     storage: diskStorage,
     limit: {fileSize: 3*1024*1024} // file size 제한 = 3MB
 });
-app.post('/upload', upload.single('profile'), (req,res) => {
-    res.status(200).send();
+app.post('/upload', async (req,res) => {
+    let orgName = req.query._id;
+    let folderPath = './public/pictures/';
+
+    // 동일 이름의 파일 지우기
+    try {
+        let files = await fs.readdir(folderPath);
+        let filesToDelete = files.filter(file => path.parse(file).name === orgName);
+        for(let file of filesToDelete) {
+            await fs.unlink(path.join(folderPath, file));
+        }
+    } catch(err) {
+        console.log(err);
+        return res.status(500).send("Fail to overwrite existing file");
+    }
+
+    // https://expressjs.com/en/resources/middleware/multer.html
+    upload.single('profile')(req, res, (err) => {
+        if(err instanceof multer.MulterError) {
+            console.log(err);
+            return res.status(500).send("File upload fail");
+        } else if(err) {
+            console.log(err);
+            return res.status(500).send("Server Error");
+        }
+
+        res.status(200).send();
+    });
 });
 
 
@@ -302,6 +330,7 @@ app.post('/add_note', async function(req, res) {
         note.numNote = counter.numNotes;
         note.readUsers = [];
         note.time = parseInt(note.time);
+        note.uid = req.user._id.toString();
         
         await db.collection('notes').insertOne(note);
         res.status(200).send(counter.numNotes.toString());
@@ -332,7 +361,7 @@ app.get('/get_note', async function(req, res) {
 app.get('/can_change_note', async function(req, res) {
     try {
         const result = await db.collection('notes').findOne({numNote: parseInt(req.query.num)}); 
-        if(result.author === req.user.username) res.status(200).send();
+        if(result.uid === req.user._id.toString()) res.status(200).send();
         else res.status(400).send("No Permission");
     } catch(err) {
         console.log(err);
@@ -433,7 +462,7 @@ app.post('/add_comment', async function(req, res) {
 app.get('/delete_comment', async function(req, res) {
     try {
         const result = await db.collection('comments').findOne({numComment: parseInt(req.query.num)});
-        if(result.author !== req.user.username) {
+        if(result.uid !== req.user._id.toString()) {
             res.status(400).send("No Permission");
             return;
         }
@@ -508,3 +537,4 @@ app.get('/schedule', function(req, res) {
     req.user._id = req.user._id.toString();
     res.render('schedule.ejs', {user: req.user});
 });
+

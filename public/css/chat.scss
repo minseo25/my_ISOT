@@ -1,7 +1,7 @@
 @use 'menubar';
 @font-face {
     font-family: 'orbit';
-    src: url('/public/font/Orbit-Regular.ttf') format('truetype');
+    src: url('/my_ISOT/public/font/Orbit-Regular.ttf') format('truetype');
 }
 $theme-color: #9932CC;
 
@@ -75,10 +75,4 @@ div.columns:not(:last-child) {
             }
         }
     }
-}
-
-.copyright {
-    position: absolute;
-    bottom: 1%;
-    left: 0.5%;
 }

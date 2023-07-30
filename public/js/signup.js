@@ -48,15 +48,15 @@ $('#signup').on('click', async function() {
         alert('check pw again');
         return;
     }
-    if(profile_val.split(".").pop()!=="png" && profile_val.split(".").pop()!=="jpg") {
-        alert('profile should be jpg/png');
+    if(profile_val.split(".").pop()!=="png" && profile_val.split(".").pop()!=="jpg" && profile_val.split(".").pop()!=="jpeg") {
+        alert('profile should be png/jpg/jpeg');
         return;
     }
 
     try {
         var res = await $.ajax({
             type: 'POST',
-            url: '/signup',
+            url: './signup',
             data: {id: id_val, pw: pw_val, username: username_val, userinfo: userinfo_val}
         });
 
@@ -68,14 +68,14 @@ $('#signup').on('click', async function() {
             // contentType: false 함으로써 서버가 데이터 타입 자동으로 결정하는 것 방지
             // processData: false 함으로써 직렬화 방지
             type: 'POST',
-            url: '/upload?_id='+res._id,
+            url: './upload?_id='+res._id,
             data: formData,
             processData: false,
             contentType: false
         });
 
         alert('Registered');
-        window.location.href = '/login';
+        window.location.href = './login';
     } catch(err) {
         alert(err.responseText);
     }
